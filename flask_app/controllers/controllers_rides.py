@@ -71,6 +71,7 @@ def create_ride():
     if 'user_id' not in session:
         return redirect('/')
     print(f"Create ride route: {request.form}")
+    models_ride.Ride.save_ride(request.form)
     # if valid input.
         # save the new ride.
         # redirect to the homepage.
