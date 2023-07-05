@@ -21,6 +21,8 @@ def check_session():
     data = {
         "id": session['user_id']
     }
+    # Get all the unbooked requets (no driver)
+    # Get all the booked rides (has a driver and rider)
     print("Successfully got the user id...")
     return render_template('homepage.html', user=models_user.User.get_by_id(data))
 
