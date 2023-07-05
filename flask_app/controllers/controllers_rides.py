@@ -27,7 +27,8 @@ def details_ride(ride_id):
         return redirect('/')
     print(f"Rendering deatils ride route...{ride_id}")
     # Will need to ge the ride to render.
-    return redirect('/homepage')
+    ride = models_ride.Ride.get_one_ride_by_id(ride_id)
+    return render_template('details_page.html', ride=ride)
 
 # Route for deleting a ride.
 @app.route('/rides/delete/<ride_id>')
@@ -72,7 +73,4 @@ def create_ride():
         return redirect('/')
     print(f"Create ride route: {request.form}")
     models_ride.Ride.save_ride(request.form)
-    # if valid input.
-        # save the new ride.
-        # redirect to the homepage.
     return redirect('/rides/new')

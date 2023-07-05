@@ -21,29 +21,34 @@
         </div>
         <!-- End of Navbar -->
         <div class="detail-box">
-            <h4>Ready for your trip to the Destination?</h4>
+            {{ride}}
+            <h4>Ready for your trip to the {{ride.destination}}?</h4>
             <div>
                 <p>Who's driving?</p>
-                <p>Name</p>
+                <p>{{ride.driver.first_name}}</p>
             </div>
             <div>
                 <p>Who's coming along?</p>
-                <p>Name</p>
+                {% if ride.rider.id != session['user_id']: %}
+                <p>{{ride.rider.first_name}}</p>
+                {% else %}
+                <p>You</p>
+                {% endif %}
             </div>
             <div>
                 <p>Date</p>
-                <p>Date Info</p>
+                <p>{{ride.date}}</p>
             </div>
             <div>
                 <p>Pick up Location:</p>
-                <p>Location</p>
+                <p>{}ride.pickup_location</p>
             </div>
             <div>
                 <p>Details:</p>
-                <p>Actual details.</p>
+                <p>{ride.details}</p>
             </div>
-            <a href="/rides/edit/">Edit</a>
-            <a href="/rides/delete/">Delete</a>
+            <a href="/rides/edit/{{ride.id}}">Edit</a>
+            <a href="/rides/delete/{{ride.id}}">Delete</a>
         </div>
     </div>
 </body>
