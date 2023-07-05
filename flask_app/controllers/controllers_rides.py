@@ -5,11 +5,56 @@ from flask_app.models import models_user, models_ride
 
 # Get Routes
 # Route for rendering the new_ride HTML page.
-@app.route ('/rides/new')
+@app.route('/rides/new')
 def new_ride():
+    print("Rendering new ride route...")
     if 'user_id' not in session:
         return redirect('/')
     return render_template('new_ride.html')
+
+# Route for rendering the edit_ride HTML page.
+@app.route('/rides/edit/<ride_id>')
+def edit_ride(ride_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Rendering edit ride route...{ride_id}")
+    return render_template('edit_ride.html')
+
+# Route for rendering the details_page HTML page.
+@app.route('/rides/<ride_id>')
+def details_ride(ride_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Rendering deatils ride route...{ride_id}")
+    # Will need to ge the ride to render.
+    return redirect('/homepage')
+
+# Route for deleting a ride.
+@app.route('/rides/delete/<ride_id>')
+def destroy_ride(ride_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Deleting a ride route...{ride_id}")
+    return redirect('/homepage')
+
+# Route for "I can drive".
+@app.route('/rides/assign/<ride_id>')
+def assign_driver(ride_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Assign driver route...{ride_id}")
+    # assign driver to the request.
+    return redirect('/homepage')
+
+# Route for canceling the ride.
+@app.route('/rides/cancel/<ride_id>')
+def cancel_ride(ride_id):
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Cancel ride route...{ride_id}")
+    return redirect('/homepage')
+
+
 
 # Post Routes
 
