@@ -46,7 +46,7 @@ def assign_driver(ride_id):
     # assign driver to the request.
     return redirect('/homepage')
 
-# Route for canceling the ride.
+# Route for the driver to cancel his/her ability to drive.
 @app.route('/rides/cancel/<ride_id>')
 def cancel_ride(ride_id):
     if 'user_id' not in session:
@@ -57,4 +57,21 @@ def cancel_ride(ride_id):
 
 
 # Post Routes
+# Route for updating a ride.
+@app.route('/rides/update', methods=['POST'])
+def update_ride():
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Update ride route: {request.form}")
+    return redirect('/homepage')
 
+# Route for creating a ride.
+@app.route('/rides', methods=['POST'])
+def create_ride():
+    if 'user_id' not in session:
+        return redirect('/')
+    print(f"Create ride route: {request.form}")
+    # if valid input.
+        # save the new ride.
+        # redirect to the homepage.
+    return redirect('/rides/new')
