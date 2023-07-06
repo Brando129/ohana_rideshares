@@ -42,10 +42,17 @@
             <div>
                 <h3 class="text-center">Booked Rideshares</h3>
                 <div class="card-rows">
+                    {% for ride in booked_rides %}
                     <div class="card m-3 p-3">
-                        <p><strong>Name</strong> is driving name to the destination</p>
-                        <p><a href="/rides/">Details </a>| <a href="/rides/cancel/">Cancel</a></p>
+                        <p><strong>{{ride.driver.first_name}}</strong> is driving {{ride.rider.first_name}} to the {{ride.destination}} on {{ride.date}}</p>
+                        <!-- If driver is logged in  -->
+                        {% if ride.driver.id == session['user_id'] %}
+                        <p><a href="/rides/{{ride.id}}">Details </a>| <a href="/rides/cancel/{{ride.id}}">Cancel</a></p>
+                        {% elif ride.rider.id == session['user_id'] %}
+                        <p><a href="/rides/{{ride.id}}">Details </a>
+                        {% endif %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>

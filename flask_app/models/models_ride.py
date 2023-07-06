@@ -49,6 +49,7 @@ class Ride:
         # Return the object
         return cls(ride_dict)
 
+    # Classmethod to get all the ooen ride requests
     @classmethod
     def get_open_ride_requests(cls):
         # Query for the ride requests (No driver)
@@ -75,6 +76,43 @@ class Ride:
             # Add ride to the requests list.
             requests.append(ride)
         return requests
+
+    @classmethod
+    def get_booked_rides(cls):
+        query = """SELECT * FROM rideshares JOIN users as riders
+                on riders.id = rider_id JOIN users as drivers on
+                drivers.id = driver_id;"""
+        results = connectToMySQL(db).query_db(query)
+        # List for requests
+        booked_rides = []
+        # Loop over the DB results
+        for row in results:
+            # Each time make a user dict from the results.
+            rider_dict = row.copy()
+            # Needs a primary id
+            rider_dict['id'] = row['rider_id']
+            # Make a user object
+            rider = models_user.User(rider_dict)
+            # Make a driver dict, and a driver (user) object
+            driver = {
+                "id": row['drivers_id'],
+                "first_name": row['drivers.first_name'],
+                "last_name": row['drivers.last_name'],
+                "email": row['drivers.email'],
+                "password": row['drivers.password'],
+                "created_at": row['drivers.created_at'],
+                "updated_at": row['drivers.updated_at']
+            }
+            # Make a ride dict from the results
+            ride_dict = row.copy()
+            # Add the user object to the dictionary
+            ride_dict['rider'] = rider
+            ride_dict['driver'] = driver
+            # Make a ride object
+            ride = cls(ride_dict)
+            # Add ride to the requests list.
+            booked_rides.append(ride)
+        return booked_rides
 
     # Classmethod for saving a new ride.
     @classmethod

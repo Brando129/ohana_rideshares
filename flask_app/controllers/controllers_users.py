@@ -22,8 +22,10 @@ def check_session():
         "id": session['user_id']
     }
     requests = models_ride.Ride.get_open_ride_requests()
+    booked_rides = models_ride.Ride.get_booked_rides()
     print("Successfully got the user id...")
-    return render_template('homepage.html', user=models_user.User.get_by_id(data), requests=requests)
+    return render_template('homepage.html', user=models_user.User.get_by_id(data),
+                            requests=requests, booked_rides=booked_rides)
 
 # Route for logging a user out
 @app.route('/logout')
