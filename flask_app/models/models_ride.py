@@ -13,7 +13,7 @@ class Ride:
         self.destination = data['destination']
         self.date = data['date']
         self.details =  data['details']
-        self.created_at = data['creadted_at']
+        self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.rider = data['rider']
         self.driver = data['driver']
@@ -50,8 +50,31 @@ class Ride:
         return cls(ride_dict)
 
     @classmethod
-    def get_all_rides(cls):
-        pass
+    def get_open_ride_requests(cls):
+        # Query for the ride requests (No driver)
+        query = """SELECT * FROM rideshares JOIN users on
+                users.id = rider_id WHERE driver_id IS NULL;"""
+        results = connectToMySQL(db).query_db(query)
+        # List for requests
+        requests = []
+        # Loop over the DB results
+        for row in results:
+            # Each time make a user dict from the results.
+            user_dict = row.copy()
+            # Needs a primary id
+            user_dict['id'] = row['rider_id']
+            # Make a user object
+            user = models_user.User(user_dict)
+            # Make a ride dict from the results
+            ride_dict = row.copy()
+            # Add the user object to the dictionary
+            ride_dict['rider'] = user
+            ride_dict['driver'] = None
+            # Make a ride object
+            ride = cls(ride_dict)
+            # Add ride to the requests list.
+            requests.append(ride)
+        return requests
 
     # Classmethod for saving a new ride.
     @classmethod
