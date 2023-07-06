@@ -151,9 +151,18 @@ class Ride:
         return results
 
 
+    # Classmethod for updating the ride details.
     @classmethod
-    def update_ride(cls, data):
-        pass
+    def update_ride(cls, ride_id):
+        print("Updating the ride details...")
+        query = """UPDATE rideshares SET pickup_location=%(pickup_location)s, details=%(details)s,
+                WHERE id = %(ride_id)s;"""
+        data = {
+            'ride_id': ride_id
+        }
+        print("Ride details update successful...")
+        return connectToMySQL(db).query_db(query, data)
+
 
     # Classmethod for deleting a recipe.
     @classmethod

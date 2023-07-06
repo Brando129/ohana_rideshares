@@ -42,7 +42,7 @@
             <div>
                 <h2 class="text-center">Booked Rideshares</h2>
                 <div class=" card-rows bg-dark p-4">
-                    {% for ride in booked_rides %}
+                    {% for ride in booked_rides | reverse %}
                     <div class="bg-warning card m-3 p-3">
                         <p><strong>{{ride.driver.first_name}}</strong> is driving <strong>{{ride.rider.first_name}}</strong> to {{ride.destination}} on {{ride.date.strftime('%m-%d-%Y')}}</p>
                         <!-- If driver is logged in  -->

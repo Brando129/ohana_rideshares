@@ -67,7 +67,12 @@ def cancel_ride(ride_id):
 def update_ride():
     if 'user_id' not in session:
         return redirect('/')
+    data = {
+        "pickup_location": request.form['pickup_location'],
+        "details": request.form['details']
+    }
     print(f"Update ride route: {request.form}")
+    models_ride.Ride.update_ride(data)
     return redirect('/homepage')
 
 # Route for creating a ride.
@@ -76,5 +81,5 @@ def create_ride():
     if 'user_id' not in session:
         return redirect('/')
     print(f"Create ride route: {request.form}")
-    models_ride.Ride.save_ride(request.form)
+    models_ride.Ride.save_ride()
     return redirect('/homepage')
