@@ -36,6 +36,7 @@ def destroy_ride(ride_id):
     if 'user_id' not in session:
         return redirect('/')
     print(f"Deleting a ride route...{ride_id}")
+    models_ride.Ride.destroy_ride(ride_id)
     return redirect('/homepage')
 
 # Route for "I can drive".
@@ -76,4 +77,4 @@ def create_ride():
         return redirect('/')
     print(f"Create ride route: {request.form}")
     models_ride.Ride.save_ride(request.form)
-    return redirect('/rides/new')
+    return redirect('/homepage')

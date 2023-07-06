@@ -155,6 +155,13 @@ class Ride:
     def update_ride(cls, data):
         pass
 
+    # Classmethod for deleting a recipe.
     @classmethod
-    def delete(cls, ride_id):
-        pass
+    def destroy_ride(cls, ride_id):
+        print("Deleting the ride...")
+        query = "DELETE FROM rideshares WHERE id = %(ride_id)s;"
+        data = {
+            'ride_id': ride_id
+        }
+        print("Deletion successful...")
+        return connectToMySQL(db).query_db(query, data)
