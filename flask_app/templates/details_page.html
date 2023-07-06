@@ -15,13 +15,12 @@
         <!-- Navbar -->
         <div class="navbar bg-dark text-light justify-content-between p-3">
             <div>
-                <a href="/" class="btn back_to_home btn-primary">Home</a>
+                <a href="/homepage" class="btn back_to_home btn-primary">Home</a>
                 <a href="/logout" class="btn btn-primary">Logout</a>
             </div>
         </div>
         <!-- End of Navbar -->
         <div class="detail-box">
-            {{ride}}
             <h4>Ready for your trip to the {{ride.destination}}?</h4>
             <div>
                 <p>Who's driving?</p>
@@ -41,11 +40,11 @@
             </div>
             <div>
                 <p>Pick up Location:</p>
-                <p>{}ride.pickup_location</p>
+                <p>{{ride.pickup_location}}</p>
             </div>
             <div>
                 <p>Details:</p>
-                <p>{ride.details}</p>
+                <p>{{ride.details}}</p>
             </div>
             <a href="/rides/edit/{{ride.id}}">Edit</a>
             <a href="/rides/delete/{{ride.id}}">Delete</a>

@@ -33,7 +33,7 @@
                         {% if session['user_id'] == request.rider.id %}
                         <p><a href="/rides/delete/{{request.id}}">Delete</a></p>
                         {% else %}
-                        <p><a href="/rides/assign/">I can drive!</a></p>
+                        <p><a href="/rides/assign/{{request.id}}">I can drive!</a></p>
                         {% endif %}
                     </div>
                     {% endfor %}

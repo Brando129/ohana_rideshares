@@ -11,6 +11,7 @@ class Ride:
     def __init__(self, data):
         self.id = data['id']
         self.destination = data['destination']
+        self.pickup_location = data['pickup_location']
         self.date = data['date']
         self.details =  data['details']
         self.created_at = data['created_at']
@@ -41,6 +42,7 @@ class Ride:
             "rider": rider,
             "driver": driver,
             "destination": ride_dict['destination'],
+            "pickup_location": ride_dict['pickup_location'],
             "date": ride_dict['date'],
             "details": ride_dict['details'],
             "created_at": ride_dict['created_at'],
@@ -95,7 +97,7 @@ class Ride:
             rider = models_user.User(rider_dict)
             # Make a driver dict, and a driver (user) object
             driver = {
-                "id": row['drivers_id'],
+                "id": row['driver_id'],
                 "first_name": row['drivers.first_name'],
                 "last_name": row['drivers.last_name'],
                 "email": row['drivers.email'],
@@ -124,6 +126,30 @@ class Ride:
         result = connectToMySQL(db).query_db(query, data)
         print("Ride succesfully saved...")
         return result
+
+    # Classmethod for assigning a driver to a ride.
+    @classmethod
+    def assign_driver_to_ride(cls, driver_id, ride_id):
+        query = """UPDATE rideshares SET driver_id = %(driver_id)s
+                WHERE id = %(ride_id)s;"""
+        data = {
+            "ride_id": ride_id,
+            "driver_id": driver_id
+        }
+        result = connectToMySQL(db).query_db(query, data)
+        return result
+
+    # Classmethod for a driver to cancel their ride.
+    @classmethod
+    def cancel_driver_of_ride(cls, ride_id):
+        query = """UPDATE rideshares SET driver_id = NULL
+                WHERE id = %(ride_id)s;"""
+        data = {
+            'ride_id': ride_id
+        }
+        results = connectToMySQL(db).query_db(query, data)
+        return results
+
 
     @classmethod
     def update_ride(cls, data):

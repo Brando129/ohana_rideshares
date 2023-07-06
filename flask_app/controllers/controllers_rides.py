@@ -1,7 +1,7 @@
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 # Class imports
-from flask_app.models import models_user, models_ride
+from flask_app.models import models_ride
 
 # Get Routes
 # Route for rendering the new_ride HTML page.
@@ -44,7 +44,8 @@ def assign_driver(ride_id):
     if 'user_id' not in session:
         return redirect('/')
     print(f"Assign driver route...{ride_id}")
-    # assign driver to the request.
+    # Assign driver to the request.
+    models_ride.Ride.assign_driver_to_ride(session['user_id'], ride_id)
     return redirect('/homepage')
 
 # Route for the driver to cancel his/her ability to drive.
@@ -53,6 +54,8 @@ def cancel_ride(ride_id):
     if 'user_id' not in session:
         return redirect('/')
     print(f"Cancel ride route...{ride_id}")
+    # Take driver off of request
+    models_ride.Ride.cancel_driver_of_ride(ride_id)
     return redirect('/homepage')
 
 
