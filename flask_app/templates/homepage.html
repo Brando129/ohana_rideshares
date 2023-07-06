@@ -14,7 +14,7 @@
     <div class="container col-12">
         <!-- Navbar -->
         <div class="navbar bg-dark text-light justify-content-between p-3">
-            <h3>Welcome, {{user.first_name}}</h3>
+            <h3 class="text-light">Welcome, {{user.first_name}}</h3>
             <div>
                 <a href="/rides/new" class="btn back_to_home btn-primary">Request a Ride</a>
                 <a href="/logout" class="btn btn-primary">Logout</a>
@@ -23,33 +23,33 @@
         <!-- End of Navbar -->
         <div class="d-flex justify-content-around mt-3">
             <div>
-                <h3 class="text-center">Rideshare Requests</h3>
-                <div class="card-rows">
+                <h2 class="text-center">Rideshare Requests</h2>
+                <div class="card-rows bg-dark p-4">
                     {% for request in requests | reverse %}
-                    <div class="card m-3 p-3">
+                    <div class="bg-info card m-3 p-3">
                         <p>Rider: {{request.rider.first_name}}</p>
                         <p>Destination: {{request.destination}}</p>
-                        <p>When Needed: {{request.date}}</p>
+                        <p>When Needed: {{request.date.strftime('%m-%d-%Y')}}</p>
                         {% if session['user_id'] == request.rider.id %}
-                        <p><a href="/rides/delete/{{request.id}}">Delete</a></p>
+                        <p><a class="act_links" href="/rides/delete/{{request.id}}">Delete</a></p>
                         {% else %}
-                        <p><a href="/rides/assign/{{request.id}}">I can drive!</a></p>
+                        <p><a class="act_links" href="/rides/assign/{{request.id}}">I can drive!</a></p>
                         {% endif %}
                     </div>
                     {% endfor %}
                 </div>
             </div>
             <div>
-                <h3 class="text-center">Booked Rideshares</h3>
-                <div class="card-rows">
+                <h2 class="text-center">Booked Rideshares</h2>
+                <div class=" card-rows bg-dark p-4">
                     {% for ride in booked_rides %}
-                    <div class="card m-3 p-3">
-                        <p><strong>{{ride.driver.first_name}}</strong> is driving {{ride.rider.first_name}} to the {{ride.destination}} on {{ride.date}}</p>
+                    <div class="bg-warning card m-3 p-3">
+                        <p><strong>{{ride.driver.first_name}}</strong> is driving <strong>{{ride.rider.first_name}}</strong> to {{ride.destination}} on {{ride.date.strftime('%m-%d-%Y')}}</p>
                         <!-- If driver is logged in  -->
                         {% if ride.driver.id == session['user_id'] %}
-                        <p><a href="/rides/{{ride.id}}">Details </a>| <a href="/rides/cancel/{{ride.id}}">Cancel</a></p>
+                        <p><a class="act_links" href="/rides/{{ride.id}}">Details </a>| <a class="act_links" href="/rides/cancel/{{ride.id}}">Cancel</a></p>
                         {% elif ride.rider.id == session['user_id'] %}
-                        <p><a href="/rides/{{ride.id}}">Details </a>
+                        <p><a class="act_links" href="/rides/{{ride.id}}">Details </a>
                         {% endif %}
                     </div>
                     {% endfor %}

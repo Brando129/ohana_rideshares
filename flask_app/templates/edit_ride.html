@@ -11,6 +11,41 @@
     <title>Edit Ride</title>
 </head>
 <body>
-    
+        <!-- Page Container -->
+        <div class="container col-12">
+            <!-- Navbar -->
+            <div class="navbar bg-dark text-light justify-content-between p-3">
+                <h3>Update the Details</h3>
+                <div>
+                    <a href="/homepage" class="btn btn-primary back_to_home">Home</a>
+                    <a href="/logout" class="btn btn-primary">Logout</a>
+                </div>
+            </div>
+            <!-- End of Navbar -->
+            <!-- Form -->
+            <form action="/rides" method="POST" class="col-8 p-3 my-4 mx-auto text-light bg-dark">
+                <input type="hidden" name="rider_id" value="{{session['user_id']}}">
+                <!-- Flash messages -->
+                {% with messages = get_flashed_messages(category_filter=['recipe']) %}     <!-- declare a variable called messages -->
+                    {% if messages %}                            <!-- check if there are any messages -->
+                        {% for message in messages %}            <!-- loop through the messages -->
+                            <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <!-- End of Flash messages -->
+                <div class="col-8">
+                    <div class="form-group">
+                        <label class="my-2" for="pickup_location">Pick up Location:</label>
+                        <textarea name="pickup_location" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="my-2" for="details">Details:</label>
+                        <textarea name="details" cols="30" rows="5" class="form-control mb-3"></textarea>
+                    </div>
+                    <input type="submit" value="Update" class="btn btn-primary">
+                </div>
+            </form>
+            <!-- End of Form -->
 </body>
 </html>
