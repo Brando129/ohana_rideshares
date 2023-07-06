@@ -25,18 +25,18 @@
             <div>
                 <h3 class="text-center">Rideshare Requests</h3>
                 <div class="card-rows">
-                    <div class="card bg-info m-3 p-3">
-                        <p>Rider: Name</p>
-                        <p>Destination: Destination</p>
-                        <p>When Needed: Date</p>
-                        <p><a href="/rides/delete/">Delete</a></p>
-                    </div>
+                    {% for request in requests | reverse %}
                     <div class="card m-3 p-3">
-                        <p>Rider: Name</p>
-                        <p>Destination: Destination</p>
-                        <p>When Needed: Date</p>
+                        <p>Rider: {{request.rider.first_name}}</p>
+                        <p>Destination: {{request.destination}}</p>
+                        <p>When Needed: {{request.date}}</p>
+                        {% if session['user_id'] == request.rider.id %}
+                        <p><a href="/rides/delete/{{request.id}}">Delete</a></p>
+                        {% else %}
                         <p><a href="/rides/assign/">I can drive!</a></p>
+                        {% endif %}
                     </div>
+                    {% endfor %}
                 </div>
             </div>
             <div>
