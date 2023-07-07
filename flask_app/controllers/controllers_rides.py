@@ -62,6 +62,17 @@ def cancel_ride(ride_id):
 
 
 # Post Routes
+# Route for creating a ride.
+@app.route('/rides', methods=['POST'])
+def create_ride():
+    if 'user_id' not in session:
+        return redirect('/')
+    if not models_ride.Ride.validate_ride(request.form):
+        return redirect('/rides/new')
+    print(f"Create ride route: {request.form}")
+    models_ride.Ride.save_ride(request.form)
+    return redirect('/homepage')
+
 # Route for updating a ride.
 @app.route('/rides/update', methods=['POST'])
 def update_ride():
@@ -73,13 +84,4 @@ def update_ride():
     }
     print(f"Update ride route: {request.form}")
     models_ride.Ride.update_ride(data)
-    return redirect('/homepage')
-
-# Route for creating a ride.
-@app.route('/rides', methods=['POST'])
-def create_ride():
-    if 'user_id' not in session:
-        return redirect('/')
-    print(f"Create ride route: {request.form}")
-    models_ride.Ride.save_ride()
     return redirect('/homepage')

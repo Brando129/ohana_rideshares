@@ -174,3 +174,21 @@ class Ride:
         }
         print("Deletion successful...")
         return connectToMySQL(db).query_db(query, data)
+
+    # Staticmethod for validating a ride.
+    @staticmethod
+    def validate_ride(ride):
+        is_valid = True
+        if len(ride['destination']) < 3:
+            is_valid = False
+            flash("Destination must be at least 3 characters", "ride")
+        if len(ride['pickup_location']) < 3:
+            is_valid = False
+            flash("Pick up location must be at least 3 characters", "ride")
+        if ride['date'] == "":
+            is_valid = False
+            flash("Invalid date", "ride")
+        if len(ride['details']) < 1:
+            is_valid = False
+            flash("Please give some details", "ride")
+        return is_valid
