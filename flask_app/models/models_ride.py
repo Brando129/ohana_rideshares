@@ -150,7 +150,6 @@ class Ride:
         results = connectToMySQL(db).query_db(query, data)
         return results
 
-
     # Classmethod for updating the ride details.
     @classmethod
     def update_ride(cls, ride_id):
@@ -175,7 +174,7 @@ class Ride:
         print("Deletion successful...")
         return connectToMySQL(db).query_db(query, data)
 
-    # Staticmethod for validating a ride.
+    # Staticmethod for validating a created ride.
     @staticmethod
     def validate_ride(ride):
         is_valid = True
@@ -191,4 +190,16 @@ class Ride:
         if len(ride['details']) < 1:
             is_valid = False
             flash("Please give some details", "ride")
+        return is_valid
+
+    # Staticmethod for validating an update of a created ride.
+    @staticmethod
+    def validate_update_ride(update_ride):
+        is_valid = True
+        if len(update_ride['pickup_location']) < 3:
+            is_valid = False
+            flash("Pick up location must be at least 3 characters", "update_ride")
+        if len(update_ride['details']) < 3:
+            is_valid = False
+            flash("Please give some deatails", "update_ride")
         return is_valid

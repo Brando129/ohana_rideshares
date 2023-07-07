@@ -76,8 +76,11 @@ def create_ride():
 # Route for updating a ride.
 @app.route('/rides/update', methods=['POST'])
 def update_ride():
+    print("Update ride route...")
     if 'user_id' not in session:
         return redirect('/')
+    if not models_ride.Ride.validate_update_ride(request.form):
+        return redirect('/rides/update')
     data = {
         "pickup_location": request.form['pickup_location'],
         "details": request.form['details']
