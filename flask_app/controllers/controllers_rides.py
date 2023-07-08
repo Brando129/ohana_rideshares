@@ -85,6 +85,7 @@ def update_ride():
         "pickup_location": request.form['pickup_location'],
         "details": request.form['details']
     }
-    print(f"Update ride route: {request.form}")
     models_ride.Ride.update_ride(data)
+    print(f"Update ride route: {request.form}")
+    print("Update ride route complete....")
     return redirect('/homepage')
