@@ -73,7 +73,7 @@ def create_ride():
     return redirect('/homepage')
 
 # Route for updating a ride.
-@app.route('/rides/update', methods=['GET', 'POST'])
+@app.route('/rides/update', methods=['POST'])
 def update_ride():
     print("Update ride route...")
     if 'user_id' not in session:
