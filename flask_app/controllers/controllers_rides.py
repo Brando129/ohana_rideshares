@@ -82,8 +82,8 @@ def update_ride():
         id = request.form['id']
         return redirect(f'/rides/edit/{id}')
     data = {
-        "pickup_location": request.form['pickup_location'],
-        "details": request.form['details']
+        'pickup_location': request.form['pickup_location'],
+        'details': request.form['details']
     }
     models_ride.Ride.update_ride(data)
     print(f"Update ride route: {request.form}")
