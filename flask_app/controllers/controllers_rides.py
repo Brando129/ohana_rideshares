@@ -18,7 +18,7 @@ def edit_ride(ride_id):
     if 'user_id' not in session:
         return redirect('/')
     print(f"Rendering edit ride route...{ride_id}")
-    return render_template('edit_ride.html')
+    return render_template('edit_ride.html', edit=models_ride.Ride.get_one_ride_by_id(ride_id))
 
 # Route for rendering the details_page HTML page.
 @app.route('/rides/<ride_id>')
@@ -60,7 +60,6 @@ def cancel_ride(ride_id):
     return redirect('/homepage')
 
 
-
 # Post Routes
 # Route for creating a ride.
 @app.route('/rides', methods=['POST'])
@@ -74,13 +73,14 @@ def create_ride():
     return redirect('/homepage')
 
 # Route for updating a ride.
-@app.route('/rides/update', methods=['POST'])
+@app.route('/rides/update', methods=['GET', 'POST'])
 def update_ride():
     print("Update ride route...")
     if 'user_id' not in session:
         return redirect('/')
     if not models_ride.Ride.validate_update_ride(request.form):
-        return redirect('/rides/update')
+        id = request.form['id']
+        return redirect(f'/rides/edit/{id}')
     data = {
         "pickup_location": request.form['pickup_location'],
         "details": request.form['details']

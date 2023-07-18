@@ -201,5 +201,5 @@ class Ride:
             flash("Pick up location must be at least 3 characters", "update_ride")
         if len(update_ride['details']) < 3:
             is_valid = False
-            flash("Please give some deatails", "update_ride")
+            flash("Please give some details about the ride", "update_ride")
         return is_valid
