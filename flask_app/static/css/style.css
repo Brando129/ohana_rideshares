@@ -46,10 +46,16 @@
 
 /* End of Registration and Login */
 
-/* Navbar buttons */
-.create_btn,
-.back_to_home {
-    margin-right: 50px;
+.home_labels {
+    font-size: 25px;
+    font-family: 'Tektur';
+    color: whitesmoke;
+}
+
+.home_txt {
+    font-size: 20px;
+    /* font-family: 'Tektur'; */
+    color: whitesmoke;
 }
 
 /* Action links */

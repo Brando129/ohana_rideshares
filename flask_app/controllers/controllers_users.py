@@ -10,7 +10,7 @@ bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
 # Route for rendering the "Dashboard Page"
 @app.route('/')
 def index():
-    return render_template('register_and_login.html')
+    return render_template('register.html')
 
 # Route for rendering the "Login Page"
 @app.route('/login_page')
