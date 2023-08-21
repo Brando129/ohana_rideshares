@@ -11,7 +11,7 @@
     <title>Home Page</title>
 </head>
 <body>
-    <div class="container col-12 mb-3">
+    <div class="col-12">
         <!-- Navbar -->
         <div class="navbar bg-dark text-light justify-content-between p-3">
             <h3 class="text-light">Welcome, {{user.first_name}}</h3>
@@ -21,10 +21,10 @@
             </div>
         </div>
         <!-- End of Navbar -->
-        <div class="d-flex justify-content-around mt-3">
+        <div class="col-8 mx-auto d-flex justify-content-around mt-5">
             <div>
                 <h2 class="text-center">Rideshare Requests</h2>
-                <div class="card-rows bg-dark p-4">
+                <div class="card-rows rounded bg-dark p-4">
                     {% for request in requests | reverse %}
                     <div class="bg-info card m-3 p-3">
                         <p>Rider: {{request.rider.first_name}}</p>
@@ -41,7 +41,7 @@
             </div>
             <div>
                 <h2 class="text-center">Booked Rideshares</h2>
-                <div class=" card-rows bg-dark p-4">
+                <div class=" card-rows rounded bg-dark p-4">
                     {% for ride in booked_rides | reverse %}
                     <div class="bg-warning card m-3 p-3">
                         <p><strong>{{ride.driver.first_name}}</strong> is driving <strong>{{ride.rider.first_name}}</strong> to {{ride.destination}} on {{ride.date.strftime('%m-%d-%Y')}}</p>

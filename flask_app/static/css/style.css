@@ -4,6 +4,48 @@
     padding: 0px;
 }
 
+/* Registration and Login */
+
+/* Background Image */
+.fixed-bg {
+    /* The background image */
+    background-image: url("/static/img/reg_and_log.png");
+
+    /* Set a specified height, or the minimum height for the background image */
+    min-height: 500px;
+
+    /* Set background image to fixed (don't scroll along with the page) */
+    background-attachment: fixed;
+
+    /* Center the background image */
+    background-position: center;
+
+    /* Set the background image to no repeat */
+    background-repeat: no-repeat;
+
+    /* Scale the background image to be as large as possible */
+    background-size: cover;
+}
+
+/* App Title */
+.log_reg_title {
+    font-size: 120px;
+    font-family: 'Tektur';
+}
+
+.log_reg_subtitle {
+    font-size: 40px;
+    font-family: 'Tektur';
+}
+
+.log_reg_labels {
+    font-size: 30px;
+    font-family: 'Tektur';
+    color: whitesmoke;
+}
+
+/* End of Registration and Login */
+
 /* Navbar buttons */
 .create_btn,
 .back_to_home {

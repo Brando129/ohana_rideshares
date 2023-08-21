@@ -12,6 +12,11 @@ bcrypt = Bcrypt(app) # We are creating an object called bcrypt,
 def index():
     return render_template('register_and_login.html')
 
+# Route for rendering the "Login Page"
+@app.route('/login_page')
+def login_page():
+    return render_template('login.html')
+
 # Route for checking if a user is in session.
 @app.route('/homepage')
 def check_session():
@@ -65,10 +70,10 @@ def login():
     user = models_user.User.get_by_email(request.form)
     if not user:
         flash("Invalid email or password.", "login")
-        return redirect('/')
+        return redirect('/login_page')
     if not bcrypt.check_password_hash(user.password, request.form['password']):
         flash("Invalid email or password.", "login")
-        return redirect('/')
+        return redirect('/login_page')
     session['user_id'] = user.id
     print("Log in successful.")
     return redirect('/homepage')

@@ -19,12 +19,12 @@
     <div class="col-12">
         <h3 class="log_reg_title text-center mt-4">Rideshares</h3>
         <!-- Form Container -->
-        <div class="col-md-3 mx-auto mt-4">
-            <!-- Registration Form -->
-            <form action="/register" class="p-4 bg-dark text-light opacity-75" method="POST">
-                <h1 class="log_reg_subtitle text-primary" >Registration</h1>
+        <div class="col-md-3 mx-auto mt-4 opacity-75">
+            <!-- Login Form -->
+            <form action="/login" class="p-4 bg-dark text-light" method="POST">
+                <h1 class="log_reg_subtitle text-success" >Log in</h1>
                 <!-- Flash messages -->
-                {% with messages = get_flashed_messages(category_filter=['register']) %}     <!-- declare a variable called messages -->
+                {% with messages = get_flashed_messages(category_filter=['login']) %}     <!-- declare a variable called messages -->
                     {% if messages %}                            <!-- check if there are any messages -->
                         {% for message in messages %}            <!-- loop through the messages -->
                             <p class="text-danger">{{message}}</p>                   <!-- display each message in a paragraph tag -->
@@ -33,14 +33,6 @@
                 {% endwith %}
                 <!-- End of Flash messages -->
                 <div class="form-group mb-2">
-                    <label class="log_reg_labels" for="first_name">First name:</label>
-                    <input type="text" name="first_name" class="form-control">
-                </div>
-                <div class="form-group mb-2">
-                    <label class="log_reg_labels" for="last_name">Last name:</label>
-                    <input type="text" name="last_name" class="form-control">
-                </div>
-                <div class="form-group mb-2">
                     <label class="log_reg_labels" for="email">Email:</label>
                     <input type="text" name="email" class="form-control">
                 </div>
@@ -48,18 +40,14 @@
                     <label class="log_reg_labels" for="password">Password:</label>
                     <input type="text" name="password" class="form-control">
                 </div>
-                <div class="form-group mb-2">
-                    <label class="log_reg_labels" for="confirm_password">Confirm Password:</label>
-                    <input type="text" name="confirm_password" class="form-control">
-                </div>
                 <div class="d-flex justify-content-between align-items-center">
-                    <button class="btn btn-primary mt-3">Submit</button>
-                    <a class="text-decoration-none text-light" href="/login_page">Already a member?</a>
+                    <button class="btn btn-success mt-3">Submit</button>
+                    <a class="text-decoration-none text-light" href="/">Register</a>
                 </div>
             </form>
-            <!-- End of Registration Form -->
+            <!-- End of Login Form -->
         </div>
-        <!-- End of Form Container -->
+        <!-- End of Forms Container -->
     </div>
     <!-- End of Page Container -->
 </body>
