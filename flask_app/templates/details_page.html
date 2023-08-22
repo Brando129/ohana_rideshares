@@ -8,49 +8,42 @@
     <!-- Bootstrap Link -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- Font Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto:ital@1&family=Tektur&display=swap" rel="stylesheet">
     <title>Details Page</title>
 </head>
 <body class="fixed-bg" style="background-image: url('/static/img/log_reg.png'); height: 400px;">
     <div class="col-12">
         <!-- Navbar -->
-        <div class="navbar bg-dark text-light justify-content-between p-4">
-            <h3>Ride Details</h3>
+        <div class="navbar bg-dark text-light justify-content-between p-3">
+            <h3 class="log_reg_subtitle text-warning">Ride Details</h3>
             <div>
                 <a href="/homepage" class="btn mx-4 btn-info">Home</a>
-                <a href="/logout" class="btn btn-info">Logout</a>
+                <a href="/logout" class="btn  mx-2 btn-info">Logout</a>
             </div>
         </div>
         <!-- End of Navbar -->
         <!-- Details Card -->
-        <div class="card col-4 p-4 my-4 mx-auto text-light bg-dark">
-            <h4 class="text-warning">Ready for your trip to {{ride.destination}}?</h4>
-            <div class="mt-2">
-                <p>Who's driving?</p>
-                <p>{{ride.driver.first_name}}</p>
-            </div>
-            <div>
-                <p>Who's coming along?</p>
-                {% if ride.rider.id != session['user_id']: %}
-                <p>{{ride.rider.first_name}}</p>
-                {% else %}
-                <p>You</p>
-                {% endif %}
-            </div>
-            <div>
-                <p>Date</p>
-                <p>{{ride.date.strftime('%m-%d-%Y')}}</p>
-            </div>
-            <div>
-                <p>Pick up Location:</p>
-                <p>{{ride.pickup_location}}</p>
-            </div>
-            <div>
-                <p>Details:</p>
-                <p>{{ride.details}}</p>
-            </div>
-            <div>
-                <a class="act_links" href="/rides/edit/{{ride.id}}">Edit</a> |
-                <a class="act_links" href="/rides/delete/{{ride.id}}">Delete</a>
+        <div class="card col-4 p-4 my-5 mx-auto text-light bg-dark">
+            <div class="bg-info rounded p-2">
+                <h4 class="log_reg_subtitle text-black text-center my-2">Ready for your trip to {{ride.destination}}?</h4>
+                <p class="home_txt text-black"><strong class="home_labels text-black">Driver:</strong> {{ride.driver.first_name}}</p>
+                <div>
+                    {% if ride.rider.id != session['user_id']: %}
+                    <p class="home_txt text-black"><strong class="home_labels text-black">Rider:</strong>{{ride.rider.first_name}}</p>
+                    {% else %}
+                    <p class="home_txt text-black"><strong class="home_labels text-black">Rider:</strong>You</p>
+                    {% endif %}
+                </div>
+                <p class="home_txt text-black"><strong class="home_labels text-black">Date:</strong>{{ride.date.strftime('%m-%d-%Y')}}</p>
+                <p class="home_txt text-black"><strong class="home_labels text-black">Pickup Location:</strong>{{ride.pickup_location}}</p>
+                <p class="home_txt text-black"><strong class="home_labels text-black">Details:</strong>{{ride.details}}</p>
+                <div class="home_labels">
+                    <a class="act_links" href="/rides/edit/{{ride.id}}">Edit</a> <strong class="text-black">|</strong>
+                    <a class="act_links" href="/rides/delete/{{ride.id}}">Delete</a>
+                </div>
             </div>
         </div>
         <!-- End of Details Card -->

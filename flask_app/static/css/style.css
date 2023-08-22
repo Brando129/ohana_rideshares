@@ -4,8 +4,6 @@
     padding: 0px;
 }
 
-/* Registration and Login */
-
 /* Background Image */
 .fixed-bg {
     /* The background image */
@@ -33,25 +31,27 @@
     font-family: 'Tektur';
 }
 
+/* Login and Registration Sub-titles */
 .log_reg_subtitle {
     font-size: 40px;
     font-family: 'Tektur';
 }
 
+/* Login and Registration labels */
 .log_reg_labels {
     font-size: 30px;
     font-family: 'Tektur';
     color: whitesmoke;
 }
 
-/* End of Registration and Login */
-
+/* Homepage Labels */
 .home_labels {
     font-size: 25px;
     font-family: 'Tektur';
     color: whitesmoke;
 }
 
+/* Homepage text */
 .home_txt {
     font-size: 20px;
     /* font-family: 'Tektur'; */
