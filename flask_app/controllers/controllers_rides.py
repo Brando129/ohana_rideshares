@@ -81,11 +81,13 @@ def update_ride():
     if not models_ride.Ride.validate_update_ride(request.form):
         id = request.form['id']
         return redirect(f'/rides/edit/{id}')
-    data = {
-        'pickup_location': request.form['pickup_location'],
-        'details': request.form['details']
-    }
-    models_ride.Ride.update_ride(data)
+    # ride_info = {
+    #     'pickup_location': request.form['pickup_location'],
+    #     'details': request.form['details'],
+    #     'driver_id': request.form['driver_id'],
+    #     'rider_id': request.form['rider_id']
+    # }
+    models_ride.Ride.update_ride(request.form)
     print(f"Update ride route: {request.form}")
-    print("Update ride route complete....")
+    # print("Update ride route complete....")
     return redirect('/homepage')

@@ -51,7 +51,7 @@ class Ride:
         # Return the object
         return cls(ride_dict)
 
-    # Classmethod to get all the ooen ride requests
+    # Classmethod to get all the open ride requests
     @classmethod
     def get_open_ride_requests(cls):
         # Query for the ride requests (No driver)

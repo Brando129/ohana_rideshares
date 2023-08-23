@@ -29,6 +29,8 @@
         <!-- Form -->
         <form action="/rides/update" method="POST" class="col-4 p-3 my-5 mx-auto text-light bg-dark">
             <input type="hidden" name="id" value="{{edit.id}}">
+            <input type="hidden" name="driver_id" value="{{1}}">
+            <input type="hidden" name="rider_id" value="{{5}}">
             <!-- Flash messages -->
             {% with messages = get_flashed_messages(category_filter=['update_ride']) %}     <!-- declare a variable called messages -->
                 {% if messages %}                            <!-- check if there are any messages -->
