@@ -1,6 +1,6 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 # Flash messages import
-from flask import flash
+from flask import flash, request
 from flask_app.models import models_user
 
 # Database name
@@ -154,10 +154,12 @@ class Ride:
     @classmethod
     def update_ride(cls, ride_id):
         print("Updating the ride details...")
-        query = """UPDATE rideshares SET pickup_location=%(pickup_location)s, details=%(details)s,
+        query = """UPDATE rideshares SET pickup_location=%(pickup_location)s, details=%(details)s
                 WHERE id = %(ride_id)s;"""
         data = {
-            'ride_id': ride_id
+            'ride_id': ride_id,
+            'details': request.form['details'],
+            'pickup_location': request.form['pickup_location']
         }
         print("Ride details update successful...")
         return connectToMySQL(db).query_db(query, data)
